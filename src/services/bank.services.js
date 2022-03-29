@@ -26,7 +26,21 @@ const getBankNames = async () => {
   return bankNames;
 }
 
+const getBankBranches = async (bankName) => {
+  const branches = await banks.findAll({
+    where: {
+      BANK : bankName
+    },
+    attributes: [
+      'id',
+      'BRANCH'
+    ]
+  })
+  return branches;
+}
+
 module.exports = {
   loadBankData,
-  getBankNames
+  getBankNames,
+  getBankBranches
 };
