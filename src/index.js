@@ -1,15 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const env = require('dotenv');
-const { BankRouter } = require('./routes/bank.route');
+const { bankRouter } = require('./routes/bank.route');
 
 env.config();
+const port = process.env.PORT || 3000;
 const app = express();
 
-const port = process.env.PORT || 4000;
-const host = process.env.HOST || 'localhost';
+app.use(bodyParser.json());
+app.use('/bank', bankRouter);
 
-app.use('/', BankRouter);
-
-app.listen(port, host, () => {
-  console.log(`server listening at http://${host}:${port}`);
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
 });
