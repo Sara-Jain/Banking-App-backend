@@ -1,4 +1,5 @@
 const bankDetails = require('../fixtures/bankDetails.json');
+const sequelize = require('sequelize');
 const { banks } = require('../../models');
 
 const loadBankData = async () => {
@@ -16,7 +17,13 @@ const loadBankData = async () => {
 };
 
 const getBankNames = async () => {
-  
+  const bankNames = await banks.findAll({
+    attributes: [
+      ['BANK' , 'bankName']
+    ],
+    group: ['BANK']
+  })
+  return bankNames;
 }
 
 module.exports = {
