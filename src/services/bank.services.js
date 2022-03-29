@@ -15,6 +15,11 @@ const loadBankData = async () => {
   return 'Data successfully loaded';
 };
 
+const getBankNames = async () => {
+  
+}
+
 module.exports = {
   loadBankData,
+  getBankNames
 };

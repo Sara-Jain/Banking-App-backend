@@ -9,6 +9,16 @@ const loadBankData = async (req, res) => {
   }
 };
 
+const getBankNames = async (req,res) => {
+  try {
+    const result = await services.getBankNames();
+    res.json(result).status(200);
+  } catch (err) {
+    res.json({ error: err.message }).status(err.httpCode);
+  }
+}
+
 module.exports = {
   loadBankData,
+  getBankNames
 };
