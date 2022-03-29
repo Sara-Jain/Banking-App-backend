@@ -22,7 +22,7 @@ const getBankNames = async () => {
       ['BANK' , 'bankName']
     ],
     group: ['BANK']
-  })
+  });
   return bankNames;
 }
 
@@ -35,7 +35,7 @@ const getBankBranches = async (bankName) => {
       'id',
       'BRANCH'
     ]
-  })
+  });
   return branches;
 }
 
@@ -52,9 +52,22 @@ const getBankBranchDetails = async (bankName , branchName) => {
   return bankDetails;
 }
 
+const getBankDetailsByIfscCode = async (ifscCode) => {
+  const bankDetails = await banks.findAll({
+    where:{
+      IFSC: ifscCode
+    },
+    attributes : {
+      exclude : ["createdAt" , "updatedAt"]
+    }
+  });
+  return bankDetails;
+}
+
 module.exports = {
   loadBankData,
   getBankNames,
   getBankBranches,
-  getBankBranchDetails
+  getBankBranchDetails,
+  getBankDetailsByIfscCode
 };
