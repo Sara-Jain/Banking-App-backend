@@ -39,8 +39,22 @@ const getBankBranches = async (bankName) => {
   return branches;
 }
 
+const getBankBranchDetails = async (bankName , branchName) => {
+  const bankDetails = await banks.findAll({
+    where:{
+      BANK: bankName,
+      BRANCH: branchName
+    },
+    attributes : {
+      exclude : ["createdAt" , "updatedAt"]
+    }
+  });
+  return bankDetails;
+}
+
 module.exports = {
   loadBankData,
   getBankNames,
-  getBankBranches
+  getBankBranches,
+  getBankBranchDetails
 };
