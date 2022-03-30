@@ -1,5 +1,4 @@
 const bankDetails = require('../fixtures/bankDetails.json');
-const sequelize = require('sequelize');
 const { banks } = require('../../models');
 
 const loadBankData = async () => {
